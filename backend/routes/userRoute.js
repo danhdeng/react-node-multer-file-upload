@@ -5,7 +5,7 @@ let express = require('express'),
     router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 // const DIR = './public/';
-const DIR = './images/';
+const DIR = './images/user';
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -37,7 +37,7 @@ router.post('/user-profile', upload.single('profileImg'), (req, res, next) => {
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        profileImg: url + '/images/' + req.file.filename
+        profileImg: url + '/images/user/' + req.file.filename
     });
     user.save().then(result => {
         res.status(201).json({
